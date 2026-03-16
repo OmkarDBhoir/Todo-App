@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import api from "./api/todos";
 import { type Todo, type Filter } from "./types";
-import { TodoInput, Filters, TodoList } from "./components";
+import { TodoInput, Filters, TodoList, ThemeToggle } from "./components";
 import "./App.css";
 
 function App() {
@@ -107,41 +107,44 @@ function App() {
   }
 
   return (
-    <div className="app">
-      <header className="header">
-        <h1 className="title">✨ Todo</h1>
-        <p className="subtitle">A modern, lightweight todo list that syncs with a local API.</p>
-      </header>
+    <>
+      <ThemeToggle />
+      <div className="app">
+        <header className="header">
+          <h1 className="title">✨ Todo</h1>
+          <p className="subtitle">A modern, lightweight todo list that syncs with a local API.</p>
+        </header>
 
-      <main className="card">
-        <TodoInput
-          newTitle={newTitle}
-          setNewTitle={setNewTitle}
-          onAdd={addTodo}
-          loading={loading}
-        />
+        <main className="card">
+          <TodoInput
+            newTitle={newTitle}
+            setNewTitle={setNewTitle}
+            onAdd={addTodo}
+            loading={loading}
+          />
 
-        <Filters currentFilter={filter} onFilterChange={setFilter} />
+          <Filters currentFilter={filter} onFilterChange={setFilter} />
 
-        <TodoList
-          todos={visibleTodos}
-          editingId={editingId}
-          editingText={editingText}
-          setEditingText={setEditingText}
-          onToggle={toggleTodo}
-          onDelete={deleteTodo}
-          onStartEdit={startEdit}
-          onSubmitEdit={submitEdit}
-          onRefresh={refreshTodos}
-          loading={loading}
-          error={error}
-        />
-      </main>
+          <TodoList
+            todos={visibleTodos}
+            editingId={editingId}
+            editingText={editingText}
+            setEditingText={setEditingText}
+            onToggle={toggleTodo}
+            onDelete={deleteTodo}
+            onStartEdit={startEdit}
+            onSubmitEdit={submitEdit}
+            onRefresh={refreshTodos}
+            loading={loading}
+            error={error}
+          />
+        </main>
 
-      <footer className="credit">
-        🚀 Built with React + TypeScript • Backend powered by Express
-      </footer>
-    </div>
+        <footer className="credit">
+          🚀 Built with React + TypeScript • Backend powered by Express
+        </footer>
+      </div>
+    </>
   );
 }
 
